@@ -1,0 +1,26 @@
+insert: after
+{
+    java.util.Iterator iterator;
+
+    net.minecraft.server.v1_8_R3.NBTTagList entityList = new net.minecraft.server.v1_8_R3.NBTTagList();
+
+    for (int i = 0; i < chunk.getEntitySlices().length; ++i) {
+        iterator = chunk.getEntitySlices()[i].iterator();
+
+        while (iterator.hasNext()) {
+            net.minecraft.server.v1_8_R3.Entity entity = (net.minecraft.server.v1_8_R3.Entity) iterator.next();
+
+            if (me.imspooks.des.api.Des.getInstance().containsEntity(entity.getUniqueID())) {
+                continue;
+            }
+
+            net.minecraft.server.v1_8_R3.NBTTagCompound entityCompound = new net.minecraft.server.v1_8_R3.NBTTagCompound();
+            if (entity.d(entityCompound)) {
+                chunk.g(true);
+                entityList.add(entityCompound);
+            }
+        }
+    }
+
+    nbttagcompound.set("Entities", entityList);
+}

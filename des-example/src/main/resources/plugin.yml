@@ -1,0 +1,8 @@
+name: Des
+main: me.imspooks.des.example.DesExample
+version: ${project.version}
+commands:
+  desexample:
+    description: Spawn an example entity, that will not save when unloading
+    permission: des.command.example
+    usage: /desexample [entity type]
