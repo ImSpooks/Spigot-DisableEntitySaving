@@ -5,4 +5,8 @@ commands:
   desexample:
     description: Spawn an example entity, that will not save when unloading
     permission: des.command.example
-    usage: /desexample [entity type]
+    usage: "/desexample [status: check entity status / remove: remove entity / <entity type>: spawn entity]"
+  teexample:
+    description: Spawn a temporary entity, that is persistent between chunk loading but will not save upon stopping the server
+    permission: te.command.example
+    usage: "/teexample [status: check entity status / remove: remove entity / <entity type>: spawn entity]"

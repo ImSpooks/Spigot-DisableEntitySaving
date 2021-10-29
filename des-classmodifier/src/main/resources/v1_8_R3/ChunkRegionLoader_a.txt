@@ -10,7 +10,7 @@ insert: after
         while (iterator.hasNext()) {
             net.minecraft.server.v1_8_R3.Entity entity = (net.minecraft.server.v1_8_R3.Entity) iterator.next();
 
-            if (me.imspooks.des.api.Des.getInstance().containsEntity(entity.getUniqueID())) {
+            if (me.imspooks.des.clsm.api.ClsmEntityCheck.getInstance().isTemporaryEntity(entity.getUniqueID())) {
                 continue;
             }
 
