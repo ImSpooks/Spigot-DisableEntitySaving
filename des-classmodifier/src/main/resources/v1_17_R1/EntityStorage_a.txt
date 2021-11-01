@@ -1,0 +1,19 @@
+insert: before
+{
+    java.util.List original = (java.util.List) $1.b().collect(java.util.stream.Collectors.toList());
+    java.util.List list = new java.util.ArrayList();
+
+    for (int i = 0; i < original.size(); i++) {
+        Object o = original.get(i);
+
+        net.minecraft.world.entity.Entity entity = (net.minecraft.world.entity.Entity) o;
+
+        if (me.imspooks.des.clsm.api.ClsmEntityCheck.getInstance().isTemporaryEntity(entity.getUniqueID())) {
+            continue;
+        }
+
+        list.add(o);
+    }
+
+    $1 = new net.minecraft.world.level.entity.ChunkEntities($1.a(), list);
+}

@@ -1,5 +1,6 @@
 package me.imspooks.des.clsm;
 
+import javassist.CtClass;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.ByteArrayOutputStream;
@@ -103,7 +104,10 @@ public class CodeChangeFinder {
                             // Get insert type
                             insert = content.split("\\n")[0].substring(7).trim();
 
-                            if (insert.isEmpty() || (!insert.equalsIgnoreCase("before") && !insert.equalsIgnoreCase("after") && !insert.matches("-?[0-9]+"))) {
+                            if (insert.isEmpty() || (!insert.equalsIgnoreCase("before")
+                                    && !insert.equalsIgnoreCase("after")
+                                    && !insert.equalsIgnoreCase("replace")
+                                    && !insert.matches("-?[0-9]+"))) {
                                 System.err.println("Invalid insert type for change file /" + location + "\n\tFor options, see me.imspooks.des.clsm.CodeChange.insert");
                                 System.exit(1);
                                 return;
@@ -140,6 +144,9 @@ public class CodeChangeFinder {
         }
 
         // Add code transformer
+        if (DEBUG) {
+            CtClass.debugDump = "./dump";
+        }
         instrumentation.addTransformer(new CodeTransformer(changes));
     }
 

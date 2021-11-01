@@ -10,8 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class DesExample extends JavaPlugin {
 
-    private TemporaryEntity<?> temporaryEntity;
-
     @Override
     public void onEnable() {
         Des.initialize(this);
